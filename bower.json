@@ -1,0 +1,26 @@
+{
+  "name": "sneakers.js",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Martin Wendt",
+      "homepage": "http://careers.stackoverflow.com/martin-wendt"
+    }
+  ],
+  "description": "JavaScript plugin that simulates tty decryption effect as seen in the 1992 movie Sneakers.",
+  "homepage": "https://github.com/mar10/sneakers.js",
+  "keywords": [
+    "jquery",
+    "plugin",
+    "jquery-plugin"
+  ],
+  "main": "src/sneakers.js",
+  "dependencies": {
+    "jquery": "1"
+  },
+  "ignore": [
+    "npm-debug.log",
+    "bower_components",
+    "node_modules"
+  ]
+}

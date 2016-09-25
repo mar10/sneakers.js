@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+	<title>sneakers.js - Demo</title>
+
+	<style type="text/css">
+		body{
+			font-family: "Trebuchet MS", "Helvetica", "Arial",  "Verdana", "sans-serif";
+			font-size: .8em;
+		}
+		/* Bring back the feeling: */
+		.console {
+			font-size: 1em;
+			background-color: #000;
+			color: #0a0;
+			/*color: #b8860b;*/
+			border: 2px solid gray;
+			padding: 4px;
+			margin: 4px 8px;
+			/* A monospaced font prevents  */
+			font-family:Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New, monospace;
+			white-space: pre;
+		}
+	</style>
+
+	<script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
+	<script src="../src/sneakers.js"></script>
+
+
+<script type="text/javascript">
+$(function(){
+	$(".sneakers").sneakers({
+		typeMs: 5,       // milliseconds per character
+		// decodeMs: 10,    // milliseconds per update
+		// maxDecode: 1000, // decode the rest after max. updates
+		// stopEps: 0.05,   // decode the rest if less than 5% are encrypted
+		lockSize: true,  // lock current element size before removing content
+		start: function() {
+			$("#statusLine").text("Receiving data...");
+		},
+		type: function() {
+			$("#statusLine").text("Data received. Decrypting...");
+		},
+		done: function() {
+			$("#statusLine").text("Successfully decrypted. No more secrets ;-)");
+			$(this).fadeTo("fast", 0).fadeTo("fast", 1);
+		}
+	});
+	$("#sample2").sneakers();
+});
+</script>
+</head>
+
+<body class="example">
+	<h1>sneakers.js</h1>
+	<p>
+		JavaScript plugin that simulates tty decryption effect as seen in the 
+		1992 movie <a href="https://youtu.be/F5bAa6gFvLs">Sneakers</a>.
+	</p>
+	<p class="console sneakers">
+$ python
+Python 2.7.10 (default, Oct 23 2015, 19:19:21) 
+[GCC 4.2.1 Compatible Apple LLVM 7.0.0 (clang-700.0.59.5)] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import this
+The Zen of Python, by Tim Peters
+
+Beautiful is better than ugly.
+Explicit is better than implicit.
+Simple is better than complex.
+Complex is better than complicated.
+Flat is better than nested.
+Sparse is better than dense.
+Readability counts.
+Special cases aren't special enough to break the rules.
+Although practicality beats purity.
+Errors should never pass silently.
+Unless explicitly silenced.
+In the face of ambiguity, refuse the temptation to guess.
+There should be one-- and preferably only one --obvious way to do it.
+Although that way may not be obvious at first unless you're Dutch.
+Now is better than never.
+Although never is often better than *right* now.
+If the implementation is hard to explain, it's a bad idea.
+If the implementation is easy to explain, it may be a good idea.
+Namespaces are one honking great idea -- let's do more of those!
+>>> 
+	</p>
+	<p id="statusLine"></p>
+
+	<p id="sample2">
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas gravida neque sem, in ultrices nunc eleifend at. In quis nibh nunc. Aliquam erat volutpat. Ut ac congue nunc. Proin vitae ante vel metus sodales aliquet. Phasellus volutpat nisi ligula, in laoreet leo aliquam non. Mauris urna turpis, rutrum sed dolor nec, porttitor pretium enim.
+	</p>
+
+	<p>
+		Copyright &copy; 2016 Martin Wendt, License: MIT.
+	</p>
+	<a href="https://github.com/mar10/sneakers.js/"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://github-camo.global.ssl.fastly.net/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkmerightorange_ff7600.png"></a>
+</body>
+</html>
