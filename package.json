@@ -1,7 +1,7 @@
 {
   "name": "sneakers.js",
-  "version": "0.0.0",
-  "description": "JavaScript plugin that simulates tty decryption effect as seen in the 1992 movie Sneakers.",
+  "version": "1.0.0",
+  "description": "jQuery plugin that simulates a tty typing and decryption effect.",
   "keywords": [
     "jquery-plugin",
     "jquery",

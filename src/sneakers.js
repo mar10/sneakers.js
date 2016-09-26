@@ -1,8 +1,8 @@
 /*******************************************************************************
  * sneakers.js plugin.
  *
- * jQuery plugin that simulates tty decryption effect as seen in the 1992 movie 
- * Sneakers
+ * jQuery plugin that simulates a tty typing and decryption effect as seen in
+ * the 1992 movie 'Sneakers'.
  *
  * @see https://github.com/mar10/sneakers.js
  *
@@ -34,7 +34,7 @@
 	// Create the defaults once
 	var pluginName = "sneakers",
 		defaults = {
-			typeMs: 0,        // milliseconds per character (0: show immediately)
+			typeMs: 5,        // milliseconds per character (0: show immediately)
 			decodeMs: 50,     // milliseconds per update
 			maxDecode: 1000,  // decode the rest after max. updates
 			stopEps: 0.05,    // decode the rest if less than 5% are encrypted

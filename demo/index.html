@@ -5,7 +5,7 @@
 	<title>sneakers.js - Demo</title>
 
 	<style type="text/css">
-		body{
+		body {
 			font-family: "Trebuchet MS", "Helvetica", "Arial",  "Verdana", "sans-serif";
 			font-size: .8em;
 		}
@@ -32,7 +32,7 @@
 $(function(){
 	$(".sneakers").sneakers({
 		typeMs: 5,       // milliseconds per character
-		// decodeMs: 10,    // milliseconds per update
+		decodeMs: 0,    // milliseconds per update
 		// maxDecode: 1000, // decode the rest after max. updates
 		// stopEps: 0.05,   // decode the rest if less than 5% are encrypted
 		lockSize: true,  // lock current element size before removing content
@@ -52,11 +52,11 @@ $(function(){
 </script>
 </head>
 
-<body class="example">
+<body>
 	<h1>sneakers.js</h1>
 	<p>
-		JavaScript plugin that simulates tty decryption effect as seen in the 
-		1992 movie <a href="https://youtu.be/F5bAa6gFvLs">Sneakers</a>.
+		jQuery plugin that simulates a tty typing and decryption effect as seen
+		in the 1992 movie <a href="https://youtu.be/F5bAa6gFvLs">Sneakers</a>.
 	</p>
 	<p class="console sneakers">
 $ python

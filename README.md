@@ -1,10 +1,15 @@
-# sneakers.js [![Build Status](https://secure.travis-ci.org/mar10/sneakers.js.svg?branch=master)](https://travis-ci.org/mar10/sneakers.js) ![Bower Version](https://badge.fury.io/bo/sneakers.svg) [![Powered by You](http://sapegin.github.io/powered-by-you/badge.svg)](http://sapegin.github.io/powered-by-you/)
+# sneakers.js ![Bower Version](https://badge.fury.io/bo/sneakers.svg) [![Powered by You](http://sapegin.github.io/powered-by-you/badge.svg)](http://sapegin.github.io/powered-by-you/)
 
-> JavaScript plugin that simulates tty decryption effect as seen in the 
+<!--
+[![Build Status](https://secure.travis-ci.org/mar10/sneakers.js.svg?branch=master)](https://travis-ci.org/mar10/sneakers.js) 
+-->
+> JavaScript plugin that simulates tty typing and decryption effect as seen in the 
 1992 movie [Sneakers](https://youtu.be/F5bAa6gFvLs).
 
-Copyright &copy; 2016 Martin Wendt, License: MIT.
 Inspired by Brian Barto's [no-more-secrets](https://github.com/bartobri/no-more-secrets) tool.
+
+Copyright &copy; 2016 Martin Wendt.
+License: MIT.
 
 Click here for a [demo](https://rawgit.com/mar10/sneakers.js/master/demo/index.html):
 
@@ -16,7 +21,6 @@ Click here for a [demo](https://rawgit.com/mar10/sneakers.js/master/demo/index.h
 Include `sneakers.js` and start the effect 
 ```js
 	$(".sneakers").sneakers({
-		typeMs: 5,       // milliseconds per character
 		lockSize: true,  // lock current element size before removing content
 		done: function() {
 			alert("done");
@@ -39,7 +43,7 @@ Following all options with their defaults:
 
 ```js
 	$(".sneakers").sneakers({
-		typeMs: 0,        // milliseconds per character (0: show immediately)
+		typeMs: 5,        // milliseconds per character (0: show immediately)
 		decodeMs: 50,     // milliseconds per update
 		maxDecode: 1000,  // decode the rest after max. updates
 		stopEps: 0.05,    // decode the rest if less than 5% are encrypted
@@ -50,5 +54,3 @@ Following all options with their defaults:
 		done: $.noop      // Decrypted text is completely displayed
 	});
 ```
-
-[1] https://rawgit.com/mar10/sneakers.js/master/demo/index.html
