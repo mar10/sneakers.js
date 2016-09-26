@@ -10,9 +10,14 @@
   "description": "jQuery plugin that simulates a tty typing and decryption effect.",
   "homepage": "https://github.com/mar10/sneakers.js",
   "keywords": [
+    "decrypt",
+    "encrypt",
     "jquery",
+    "jquery-plugin",
     "plugin",
-    "jquery-plugin"
+    "simulation",
+    "tty",
+    "typing"
   ],
   "main": "src/sneakers.js",
   "dependencies": {

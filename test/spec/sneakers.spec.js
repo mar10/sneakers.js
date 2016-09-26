@@ -53,16 +53,45 @@
 
 		$fixture.sneakers( {
 			typeMs: 0,
-			decryptMs: 1,
+			decodeMs: 1,
 			start: function(){
 				assert.ok(true, "start event is triggered");
-				// assert.equal($fixture.text().length, text.length, "start text exists");
+				assert.equal($fixture.text().length, text.length, "start text exists");
 				assert.notEqual($fixture.text(), text, "start text is encrypted");
 			},
 			type: function(){
 				assert.ok(true, "type event is triggered");
 				assert.equal($fixture.text().length, text.length, "text is typed");
 				assert.notEqual($fixture.text(), text, "typed text is encrypted");
+			},
+			done: function(){
+				assert.ok(true, "done event is triggered");
+				assert.equal($fixture.text(), text, "Final result ok");
+				done();
+			}
+		} );
+	} );
+
+	QUnit.test( "typing only simulation (no decrypting)", function( assert ) {
+		var done  = assert.async(),
+			text = "abc";
+		
+		assert.expect(7);
+
+		$fixture.text(text);
+
+		assert.equal($fixture.text(), text, "text is initialized");
+
+		$fixture.sneakers( {
+			typeMs: 1,
+			decodeMs: 0,
+			start: function(){
+				assert.ok(true, "start event is triggered");
+				assert.equal($fixture.text(), "", "text is removed on start");
+			},
+			type: function(){
+				assert.ok(true, "type event is triggered");
+				assert.equal($fixture.text(), text, "typed text is NOT encrypted");
 			},
 			done: function(){
 				assert.ok(true, "done event is triggered");
@@ -84,7 +113,7 @@
 
 		$fixture.sneakers( {
 			typeMs: 1,
-			decryptMs: 1,
+			decodeMs: 1,
 			start: function(){
 				assert.ok(true, "start event is triggered");
 				assert.equal($fixture.text(), "", "text is removed on start");

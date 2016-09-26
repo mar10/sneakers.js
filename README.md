@@ -44,8 +44,8 @@ Following all options with their defaults:
 ```js
 	$(".sneakers").sneakers({
 		typeMs: 5,        // milliseconds per character (0: show immediately)
-		decodeMs: 50,     // milliseconds per update
-		maxDecode: 1000,  // decode the rest after max. updates
+		decodeMs: 50,     // milliseconds per update (0: no decryption simulation)
+		maxDecode: 1000,  // decode the rest after max. n update cycles
 		stopEps: 0.05,    // decode the rest if less than 5% are encrypted
 		lockSize: false,  // lock current element size before removing content
 		// Events:

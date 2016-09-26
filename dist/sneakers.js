@@ -1,6 +1,6 @@
 /*
- *  sneakers.js - v0.0.0
- *  JavaScript plugin that simulates tty decryption effect as seen in the 1992 movie Sneakers.
+ *  sneakers.js - v1.0.0
+ *  jQuery plugin that simulates a tty typing and decryption effect.
  *  https://github.com/mar10/sneakers.js
  *
  *  Made by Martin Wendt
@@ -9,8 +9,8 @@
 /*******************************************************************************
  * sneakers.js plugin.
  *
- * jQuery plugin that simulates tty decryption effect as seen in the 1992 movie 
- * Sneakers
+ * jQuery plugin that simulates a tty typing and decryption effect as seen in
+ * the 1992 movie 'Sneakers'.
  *
  * @see https://github.com/mar10/sneakers.js
  *
@@ -39,12 +39,12 @@
 		return res;
 	}
 
-	// Create the defaults once
+	// Create the options defaults
 	var pluginName = "sneakers",
 		defaults = {
-			typeMs: 0,        // milliseconds per character (0: show immediately)
-			decodeMs: 50,     // milliseconds per update
-			maxDecode: 1000,  // decode the rest after max. updates
+			typeMs: 5,        // milliseconds per character (0: show immediately)
+			decodeMs: 50,     // milliseconds per update (0: no decryption simulation)
+			maxDecode: 1000,  // decode the rest after max. n update cycles
 			stopEps: 0.05,    // decode the rest if less than 5% are encrypted
 			lockSize: false,  // lock current element size before removing content
 			// Events:
@@ -61,6 +61,7 @@
 		this._defaults = defaults;
 		this._name = pluginName;
 		this.originalText = null;
+		this.currentText = null;
 		this.init();
 	}
 
@@ -68,34 +69,40 @@
 	$.extend( Plugin.prototype, {
 		init: function() {
 			var self = this;
-			// console.time("type");
-			// console.time("decrypt");
+
 			this.encode();
-			self.settings.start.call(self.element);
-			this.type(this.currentText, 0).done(function(){
-				// console.timeEnd("type");
+			this.settings.start.call(this.element);
+			this.type(this.currentText, 0).done(function() {
 				self.settings.type.call(self.element);
-				self.decrypt(self.settings.maxDecode).done(function(){
+				self.decrypt(self.settings.maxDecode).done(function() {
 					self.settings.done.call(self.element);
 				});
 			});
 		},
-		/* Move original text into element data. */
+		/* Move original text into element data and set 'decrypted' text instead. */
 		encode: function() {
-			var $el = this.$element;
+			var $el = this.$element,
+				opts = this.settings;
 
 			this.originalText = $el.text();
-			this.currentText = _encode(this.originalText);
+			// Init with encrypted text unless decryption simulation is off
+			if( opts.decodeMs > 0 ) {
+				this.currentText = _encode(this.originalText);
+			} else {
+				this.currentText = this.originalText;
+			}
+			// Set current dimension as inline style, so the element keeps its
+			// size when content is removed for typing simulation
 			if( this.settings.lockSize ) {
 				$el.css({
 					height: $el.css("height"),
 					width: $el.css("width")
 				});
 			}
-			$el
-				// .text("")
-				.text(this.settings.typeMs ? "" : this.currentText)
-				.show();
+			// Clear text unless typing simulation is off
+			$el.text(opts.typeMs ? "" : this.currentText);
+			// Show element (in case it was hidden before)
+			$el.show();
 		},
 		/* Type text to console, character-by-character. */
 		type: function(s, i, _dfd, _prevStamp) {
@@ -106,8 +113,8 @@
 
 			if( this.settings.typeMs && i < s.length ) {
 				// Main 'performance' issue seems to be that setTimeout doesn't 
-				// allow less than 10ms intervals (Safari)
-				// We try to compensate by printing multiple characters, at once
+				// allow less than ~10ms intervals.
+				// We try to compensate by printing multiple characters at once
 				nchar = 1;
 				if( _prevStamp ) {
 					delta = now - _prevStamp;
@@ -115,17 +122,18 @@
 					// console.log(_prevStamp + ", delta=" + delta + "ms: nchar=" + nchar);
 				}
 				this.$element.append(s.substr(i, nchar));
-				// this.element.innerHTML += s[i];
+				// Schedule next keystroke
 				setTimeout(function(){
 					self.type.call(self, s, i+nchar, dfd, now);
 				}, this.settings.typeMs);
 			} else {
+				// All characters typed (or typing simulation is off)
 				this.$element.text(s);
 				dfd.resolve();				
 			}
 			return _dfd ? null : dfd.promise();
 		},
-		/* Change current text until every character is 'decoded'. */
+		/* Change current text until every character is 'decrypted'. */
 		decrypt: function(loopCount, _dfd) {
 			var c, i,
 				dfd = _dfd || new $.Deferred(),
@@ -137,6 +145,8 @@
 				s = "";
 
 			if ( loopCount > 0 ) {
+				// Replace each character with a new random value, but leave
+				// already decrypted characters intact
 				for( i=0; i<len; i++) {
 					c = ct[i];
 					if( c === ot[i] ) {
@@ -157,11 +167,11 @@
 				// Resolve all if loop count exceeded
 				this.currentText = ot;
 			}
-			
-			// this.element.innerHTML = this.currentText;
+			// Print the current text version
 			this.$element.text(this.currentText);
 
 			if( encryptedCount > 0 ) {
+				// Schedule next decryption iteration
 				setTimeout(function(){
 					self.decrypt.call(self, loopCount-1, dfd);
 				}, this.settings.decodeMs);

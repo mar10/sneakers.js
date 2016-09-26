@@ -3,9 +3,14 @@
   "version": "1.0.0",
   "description": "jQuery plugin that simulates a tty typing and decryption effect.",
   "keywords": [
-    "jquery-plugin",
+    "decrypt",
+    "encrypt",
     "jquery",
-    "plugins"
+    "jquery-plugin",
+    "plugin",
+    "simulation",
+    "tty",
+    "typing"
   ],
   "repository": {
     "type": "git",
