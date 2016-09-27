@@ -18,21 +18,38 @@ Click here for a [demo](https://rawgit.com/mar10/sneakers.js/master/demo/index.h
 
 ### Usage
 
-Include `sneakers.js` and start the effect 
+Include <a href="https://github.com/mar10/sneakers.js/blob/master/dist/sneakers.min.js">`sneakers.min.js`</a>
+and initialize the plugin 
 ```js
 	$(".sneakers").sneakers({
 		lockSize: true,  // lock current element size before removing content
 		done: function() {
-			alert("done");
+			alert("done");  // optionally handle events
 		}
 	});
 ```
 
 this will remove the content of the target element, then 'type' it in in an 'encrypted'
 version, and then 'decrypt' the text:
+
 ```html
 <p class="sneakers">
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas gravida neque sem, in ultrices nunc eleifend at. In quis nibh nunc. Aliquam erat volutpat. Ut ac congue nunc. Proin vitae ante vel metus sodales aliquet. Phasellus volutpat nisi ligula, in laoreet leo aliquam non. Mauris urna turpis, rutrum sed dolor nec, porttitor pretium enim.
+The Zen of Python, by Tim Peters
+
+Beautiful is better than ugly.
+Explicit is better than implicit.
+</p>
+```
+
+Some CSS rules can help to maintain line breaks and prevent wobbling:
+
+```css
+.sneakers {
+	/* A monospaced font prevents wobbling */
+	font-family: Consolas, "Andale Mono", "Courier New", monospace;
+	/* Preserve newlines in plain text */
+	white-space: pre;
+}
 </p>
 ```
 
@@ -42,15 +59,15 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas gravida neque 
 Following all options with their defaults:
 
 ```js
-	$(".sneakers").sneakers({
-		typeMs: 5,        // milliseconds per character (0: show immediately)
-		decodeMs: 50,     // milliseconds per update (0: no decryption simulation)
-		maxDecode: 1000,  // decode the rest after max. n update cycles
-		stopEps: 0.05,    // decode the rest if less than 5% are encrypted
-		lockSize: false,  // lock current element size before removing content
-		// Events:
-		start: $.noop,    // Current text was replaced by encrypted text 
-		type: $.noop,     // 'Encrypted' text has been typed to screen
-		done: $.noop      // Decrypted text is completely displayed
-	});
+$(".sneakers").sneakers({
+	typeMs: 5,        // milliseconds per 'keystroke' (0: no typing simulation)
+	decodeMs: 50,     // milliseconds per update (0: no decryption simulation)
+	maxDecode: 1000,  // decode the rest after max. n update cycles
+	stopEps: 0.05,    // decode the rest if less than 5% are encrypted
+	lockSize: false,  // lock current element size before removing content
+	// Events:
+	start: $.noop,    // Current text was replaced by encrypted text 
+	type: $.noop,     // 'Encrypted' text has been typed to screen
+	done: $.noop      // Decrypted text is completely displayed
+});
 ```
