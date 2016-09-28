@@ -70,7 +70,8 @@ module.exports = function( grunt ) {
 				background: true,
 				singleRun: false,
 				// browsers: [ "PhantomJS", "Firefox" ]
-				browsers: [ "PhantomJS", "Safari" ]
+				// browsers: [ "PhantomJS", "Safari" ]
+				browsers: [ "PhantomJS" ]
 			},
 
 			//continuous integration mode: run tests once in PhantomJS browser.

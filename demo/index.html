@@ -26,8 +26,6 @@
 <script type="text/javascript">
 $(function(){
 	$(".sneakers").sneakers({
-		typeMs: 5,
-		decodeMs: 50,
 		lockSize: true,
 		start: function() {
 			$("#statusLine").text("Receiving data...");
@@ -42,8 +40,9 @@ $(function(){
 	});
 
 	$("#sample2").sneakers({
-		typeMs: 10,
-		decodeMs: 0  // no decryption simulation
+		typeSpeedMs: 4,       // type effect
+		jumbleDurationMs: 0,  // no jumble phase
+		decodeDurationMs: 0   // no decryption simulation
 	});
 });
 </script>
@@ -81,7 +80,8 @@ National Headquarters
 	<p id="statusLine"> </p>
 
 	<p>
-		Typing and decription simulation can be enabled separately:
+		Typing and decription simulation can be enabled separately, for example
+		type-only:
 	</p>
 
 	<p id="sample2" style="font-family: monospace; white-space: pre;">

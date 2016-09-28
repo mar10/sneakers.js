@@ -52,8 +52,9 @@
 		assert.equal($fixture.text(), text, "text is initialized");
 
 		$fixture.sneakers( {
-			typeMs: 0,
-			decodeMs: 1,
+			typeSpeedMs: 0,
+			jumbleDurationMs: 100,
+			decodeDurationMs: 100,
 			start: function(){
 				assert.ok(true, "start event is triggered");
 				assert.equal($fixture.text().length, text.length, "start text exists");
@@ -83,8 +84,9 @@
 		assert.equal($fixture.text(), text, "text is initialized");
 
 		$fixture.sneakers( {
-			typeMs: 1,
-			decodeMs: 0,
+			typeSpeedMs: 1,
+			jumbleDurationMs: 0,
+			decodeDurationMs: 0,
 			start: function(){
 				assert.ok(true, "start event is triggered");
 				assert.equal($fixture.text(), "", "text is removed on start");
@@ -112,8 +114,9 @@
 		assert.equal($fixture.text(), text, "text is initialized");
 
 		$fixture.sneakers( {
-			typeMs: 1,
-			decodeMs: 1,
+			typeSpeedMs: 1,
+			jumbleDurationMs: 100,
+			decodeDurationMs: 100,
 			start: function(){
 				assert.ok(true, "start event is triggered");
 				assert.equal($fixture.text(), "", "text is removed on start");

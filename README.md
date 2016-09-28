@@ -21,12 +21,12 @@ Click here for a [demo](https://rawgit.com/mar10/sneakers.js/master/demo/index.h
 Include <a href="https://github.com/mar10/sneakers.js/blob/master/dist/sneakers.min.js">`sneakers.min.js`</a>
 and initialize the plugin 
 ```js
-	$(".sneakers").sneakers({
-		lockSize: true,  // lock current element size before removing content
-		done: function() {
-			alert("done");  // optionally handle events
-		}
-	});
+$(".sneakers").sneakers({
+	lockSize: true,  // lock current element size before removing content
+	done: function() {
+		alert("done");  // optionally handle events
+	}
+});
 ```
 
 this will remove the content of the target element, then 'type' it in in an 'encrypted'
@@ -60,14 +60,16 @@ Following all options with their defaults:
 
 ```js
 $(".sneakers").sneakers({
-	typeMs: 5,        // milliseconds per 'keystroke' (0: no typing simulation)
-	decodeMs: 50,     // milliseconds per update (0: no decryption simulation)
-	maxDecode: 1000,  // decode the rest after max. n update cycles
-	stopEps: 0.05,    // decode the rest if less than 5% are encrypted
-	lockSize: false,  // lock current element size before removing content
+	typeSpeedMs: 4,          // milliseconds per 'keystroke' (0: no typing simulation)
+	jumbleDurationMs: 2000,  // duration of jumble phase [ms] (0: no jumble phase)
+	jumbleSpeedMs: 35,       // milliseconds per jumble update
+	decodeDurationMs: 5000,  // duration of decoding phase [ms] (0: no decryption simulation)
+	decodeSpeedMs: 100,      // milliseconds per update
+	stopEps: 0.01,           // decode the rest if less than 1% are encrypted
+	lockSize: false,         // lock current element size before removing content
 	// Events:
-	start: $.noop,    // Current text was replaced by encrypted text 
-	type: $.noop,     // 'Encrypted' text has been typed to screen
-	done: $.noop      // Decrypted text is completely displayed
+	start: $.noop,           // Current text was replaced by encrypted text 
+	type: $.noop,            // 'Encrypted' text has been typed to screen
+	done: $.noop             // Decrypted text is completely displayed
 });
 ```
