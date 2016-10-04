@@ -8,8 +8,7 @@
 
 Inspired by Brian Barto's [no-more-secrets](https://github.com/bartobri/no-more-secrets) tool.
 
-Copyright &copy; 2016 Martin Wendt.
-License: MIT.
+Copyright &copy; 2016 Martin Wendt. License: MIT.
 
 Click here for a [demo](https://rawgit.com/mar10/sneakers.js/master/demo/index.html):
 
@@ -18,7 +17,8 @@ Click here for a [demo](https://rawgit.com/mar10/sneakers.js/master/demo/index.h
 
 ### Usage
 
-Include <a href="https://github.com/mar10/sneakers.js/blob/master/dist/sneakers.min.js">`sneakers.min.js`</a>
+Include <a href="http://jquery.com">jQuery</a> and
+<a href="https://github.com/mar10/sneakers.js/blob/master/dist/sneakers.min.js">`sneakers.min.js`</a>
 and initialize the plugin 
 ```js
 $(".sneakers").sneakers({
@@ -50,7 +50,6 @@ Some CSS rules can help to maintain line breaks and prevent wobbling:
 	/* Preserve newlines in plain text */
 	white-space: pre;
 }
-</p>
 ```
 
 
