@@ -1,9 +1,9 @@
 # sneakers.js ![Bower Version](https://badge.fury.io/bo/sneakers.svg) [![Powered by You](http://sapegin.github.io/powered-by-you/badge.svg)](http://sapegin.github.io/powered-by-you/)
 
 <!--
-[![Build Status](https://secure.travis-ci.org/mar10/sneakers.js.svg?branch=master)](https://travis-ci.org/mar10/sneakers.js) 
+[![Build Status](https://secure.travis-ci.org/mar10/sneakers.js.svg?branch=master)](https://travis-ci.org/mar10/sneakers.js)
 -->
-> JavaScript plugin that simulates tty typing and decryption effect as seen in the 
+> JavaScript plugin that simulates tty typing and decryption effect as seen in the
 1992 movie [Sneakers](https://youtu.be/F5bAa6gFvLs).
 
 Inspired by Brian Barto's [no-more-secrets](https://github.com/bartobri/no-more-secrets) tool.
@@ -13,13 +13,16 @@ License: MIT.
 
 Click here for a [demo](https://rawgit.com/mar10/sneakers.js/master/demo/index.html):
 
+[![Demo](demo/console-ani.gif)](https://rawgit.com/mar10/sneakers.js/master/demo/index.html)
+<!--
 [![Demo](demo/console.png)](https://rawgit.com/mar10/sneakers.js/master/demo/index.html)
+-->
 
 
 ### Usage
 
 Include <a href="https://github.com/mar10/sneakers.js/blob/master/dist/sneakers.min.js">`sneakers.min.js`</a>
-and initialize the plugin 
+and initialize the plugin
 ```js
 $(".sneakers").sneakers({
 	lockSize: true,  // lock current element size before removing content
@@ -68,7 +71,7 @@ $(".sneakers").sneakers({
 	stopEps: 0.01,           // decode the rest if less than 1% are encrypted
 	lockSize: false,         // lock current element size before removing content
 	// Events:
-	start: $.noop,           // Current text was replaced by encrypted text 
+	start: $.noop,           // Current text was replaced by encrypted text
 	type: $.noop,            // 'Encrypted' text has been typed to screen
 	done: $.noop             // Decrypted text is completely displayed
 });
